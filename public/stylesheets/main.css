@@ -1,0 +1,163 @@
+/*
+#48D1CC 水蓝色
+
+*/
+body
+{
+    font-family: "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+#main-content
+{  
+   height: 550px;
+   border:2px solid #eee; 
+   border-top: none;
+}
+#footer-content
+{
+  height: 100px;
+  padding: 20px;
+  border-bottom: 2px solid #eee; 
+}
+
+.right-side-grid
+{
+  height: 180px;
+  width: 150px;
+  float: right;
+  border: 2px solid #eee;
+  background-color: gray;
+  top: 12px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.right-side-grid p
+{
+  color: white;
+  margin-top: 3px;
+  text-align: center;
+}
+
+.right-side-grid-content
+{
+   border: 5px solid white; 
+   background-color: white;
+   width: 150px;
+   bottom: 0px;
+   position: absolute;
+}
+.right-side-grid-content ul
+{
+    padding-left: 15px;
+    padding-top: 0px;
+}
+
+
+.grid
+{ 
+  margin: 10px 5px 0px 5px;
+  border-top: 2px solid red;
+}
+.grid-head a
+{
+  color: black;
+}
+.grid li a
+{ 
+  color: gray;
+}
+.grid a:hover
+{ 
+  color:  #FF4500;
+}
+.grid ul
+{  
+   list-style-type:square;
+   padding-left: 20px;
+}
+
+ footer
+ {
+   background-color: #48D1CC;
+   color: #E1FFFF;
+   line-height: 10px;
+ }
+  footer a
+ {
+   color: #E1FFFF;
+ }
+ footer a:hover
+ {
+   color: #E1FFFF;
+ }
+ .footer-header
+ {
+   padding: 20px 0px;
+   border-bottom: 1px solid   #20B2AA;
+ }
+ 
+ #search-box
+ {
+   width: 128px;
+   height: 1.5em;
+   background-color: white;
+   position: absolute;
+   top: 15px;
+ }
+
+  #search-box-input
+  {
+    width: 100px;
+    height: 1.5em;
+    border: none;
+    float: left;
+  }
+  #go
+  {     
+    float: left;
+    color: red;
+  }
+    .nav-item-decoration
+  {
+    height: 2px;
+    background-color: white; 
+    visibility: hidden;
+  }
+  .navbar
+  {
+    margin: 0;
+    border-bottom: none;
+  }
+  .navbar-default 
+  {
+  background-color:#48D1CC;
+  border-color: #e7e7e7;
+  }
+  .navbar-default .navbar-nav > li > a 
+  {
+  color: white;
+  }
+  .navbar-default .navbar-nav > .active > a,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:focus 
+  {
+  color:  #696969;
+  background-color:  #48D1CC;
+  }
+ 
+  #main-content col-lg-4
+  {
+    margin-left: 0;
+  }
+  .caret
+  {
+    color: white;
+    visibility: hidden;
+  }
+ 
+  
+  .dropdown-menu > li > a:hover,
+  .dropdown-menu > li > a:focus 
+  {
+    background-color: #48D1CC;
+  }

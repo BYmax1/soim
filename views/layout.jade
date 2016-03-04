@@ -1,0 +1,169 @@
+doctype html
+html
+ head
+
+ 
+   title= title
+
+   link(rel='stylesheet', href='stylesheets/main.css') 
+ 
+   link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+
+   meta(charset='utf-8',name='viewport',content="width=device-width, initial-scale=1")
+   body
+    .container
+         #row
+          #logo.col-xs-6
+           img.img-responsive(src='images/logo.png')
+          .col-xs-1
+          .col-xs-5
+            p(style='float:right')
+             a(href='#') English
+
+    #row
+      nav.navbar.navbar-default(role='navigation')
+        .container
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#example-navbar-collapse')
+              span.sr-only 切换导航
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+          #example-navbar-collapse.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a(href='#') 首页
+                .nav-item-decoration
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | 院系介绍 
+                  b.caret
+                .nav-item-decoration
+                ul.dropdown-menu
+                  li
+                    a(href='#') jmeter
+                  li
+                    a(href='#') EJB
+                  li
+                    a(href='#') Jasper Report
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | 教学信息 
+                  b.caret
+                .nav-item-decoration
+                ul.dropdown-menu
+                  li
+                    a(href='#') jmeter
+                  li
+                    a(href='#') EJB
+                  li
+                    a(href='#') Jasper Report
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | 学科建设 
+                  b.caret
+                .nav-item-decoration
+                ul.dropdown-menu
+                  li
+                    a(href='#') jmeter
+                  li
+                    a(href='#') EJB
+                  li
+                    a(href='#') Jasper Report
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | 招生信息 
+                  b.caret
+                .nav-item-decoration
+                ul.dropdown-menu
+                  li
+                    a(href='#') jmeter
+                  li
+                    a(href='#') EJB
+                  li
+                    a(href='#') Jasper Report
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | 党建工作 
+                  b.caret
+                .nav-item-decoration
+                ul.dropdown-menu
+                  li
+                    a(href='#') jmeter
+                  li
+                    a(href='#') EJB
+                  li
+                    a(href='#') Jasper Report
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | 学生工作 
+                  b.caret
+                .nav-item-decoration
+                ul.dropdown-menu
+                  li
+                    a(href='#') jmeter
+                  li
+                    a(href='#') EJB
+                  li
+                    a(href='#') Jasper Report
+              li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                  | 国际合作 
+                  b.caret
+                .nav-item-decoration
+                ul.dropdown-menu
+                  li
+                    a(href='#') jmeter
+                  li
+                    a(href='#') EJB
+                  li
+                    a(href='#') Jasper Report
+              li
+                a(href='#') 人才招聘
+                .nav-item-decoration
+              li
+                a(href='#') 校友园地
+                .nav-item-decoration
+              li
+                #search-box
+                  form#search-form(method='post', action='#')
+                    input#search-box-input(type='text', name='search', placeholder='站内搜索')
+                    input#go(type='image', src='images/search.png', width='24', height='22', alt='Search')
+
+             
+    block content
+    footer
+      .container
+        #row
+          .col-lg-6
+            #row
+              h4.footer-header 关于我们
+            #row
+              p 主办单位：江西财经大学信息管理学院
+              p 地址：昌北经济技术开发区玉屏大道
+              p 邮编：330013
+              p 电话：xxxxxxxx
+              p 传真：xxxxxxxx
+              p Copyright © 2016 江西财经大学信息管理学院
+          .col-lg-6
+            #row
+              h4.footer-header 友情链接
+            #row
+              p
+                a(href='') 中华人民共和国教育部
+              p
+                a(href='') 中国高等教育学生信息网
+              p
+                a(href='') 江西教育网
+              p
+                a(href='') 南昌大学
+              p
+                a(href='') 江西师范大学
+              p
+                a(href='') 江西财经大学
+              p
+                a(href='') 江西财经大学软件与通信工程学院
+
+    script(src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js')
+    script(src='javascripts/bootstrap.min.js')  
+    script(src='javascripts/main.js')
