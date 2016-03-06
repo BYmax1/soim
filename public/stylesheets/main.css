@@ -1,6 +1,6 @@
 /*
 #48D1CC 水蓝色
-
+#FF4500 橘红色
 */
 body
 {
@@ -8,7 +8,7 @@ body
 }
 #main-content
 {  
-   height: 550px;
+    
    border:2px solid #eee; 
    border-top: none;
 }
@@ -161,3 +161,61 @@ body
   {
     background-color: #48D1CC;
   }
+
+
+   .col-lg-2
+   {
+     padding-left: 0;
+
+   }
+
+   #right-content
+   {
+      margin: 30px 0;
+       
+      
+   }
+
+   #right-content-header
+   {
+      height: 30px;
+      background-color: #48D1CC;
+      position: relative;
+     
+   }
+   #right-content-header p
+   {
+      color: white;
+      position: absolute;
+      top: 5px;
+      right: 3px;
+   }
+      #right-content-header a
+   {
+      color: white;
+   }
+      #right-content-header span
+   {
+      color: #FF4500;
+   }
+
+   #right-content-list ul
+   {
+     list-style: none;
+     padding-left: 0;
+   }
+    #right-content-list a
+   {
+     color: gray;
+   }
+   .time
+   {
+    display: inline-block;
+    color: #FF4500;
+     float: right;
+   }
+
+   #page-box
+   {
+      float: right;
+   }
