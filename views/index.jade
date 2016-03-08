@@ -34,7 +34,7 @@ block content
                 .col-lg-12
                   .grid
                     h2.grid-head
-                      a(href='') 学院介绍
+                      a(href='/nav?NavId=1&SubNavId=1') 学院简介
                     p
                       | 信息管理学院组建于1998年7月，其前身是1988年成立的经济信息管理系。学院名誉院长为中国著名经济学家，中国数量经济学、信息经济学创始人乌家培教授。现任学院领导：院长毛小兵副教授，党委书记邹春发副教授，副院长沈波副教授（分管研究生工作）、副院长杨勇教授（分管科研工作）、副院长万建香副教授（分管教学工作）、副院长曹小英（分管行政工作），党委副书记肖建文。
               // 学院通知
@@ -43,34 +43,23 @@ block content
                 .col-lg-4
                   .grid
                     h2.grid-head
-                      a(href='') 学院通知
+                      a(href='/nav?NavId=10&SubNavId=1') 学院通知
                     ul
-                      li
-                        a(href='') 舌战群儒，谁与争锋
-                      li
-                        a(href='') SAP培训通知
-                      li
-                        a(href='') 2011级微机操作补考安排
-                      li
-                        a(href='') 141学期信息学院补考通知
-                      li
-                        a(href='') 第二届中国大数据技术创新大赛
+                     each item in xytz
+                       - var url='article?id='+item.url+'&NavId=10&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
+                       li
+                        a(href= url) #{item.header}
+ 
                 // 教学科研
                 .col-lg-4
                   .grid
                     h2.grid-head
-                      a(href='') 教学科研
+                      a(href='/nav?NavId=11&SubNavId=1') 教学科研
                     ul
+                     each item in jxky
+                      - var url='article?id='+item.url+'&NavId=11&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
                       li
-                        a(href='') 092学期本科行政班课表
-                      li
-                        a(href='') 2010年高校人文社科项目申报通知
-                      li
-                        a(href='') 2011级微机操作补考安排
-                      li
-                        a(href='') 141学期信息学院补考通知
-                      li
-                        a(href='') 第二届中国大数据技术创新大赛
+                        a(href= url) #{item.header}
                 .col-lg-4
                   .grid
                     h2.grid-head

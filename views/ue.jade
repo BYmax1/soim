@@ -11,14 +11,17 @@ html
       div{
       width:100%;
       }
-      #header
+      #header,#NavId,#SubNavId
       {
          margin-bottom:10px;
+         display:block;
       }
   body
     div
-      h1 完整demo
-      input(type='text' id='header')
+      h1 文章发表
+      input(type='text' id='header')  
+      input(type='text' id='NavId')   
+      input(type='text' id='SubNavId')  
       script#editor(type='text/plain', style='width:1024px;height:500px;').
     #btns
       div
@@ -74,10 +77,22 @@ html
        var content=UE.getEditor('editor').getContent()
        content=content.replace('src="/','src="./');
        content=content.replace('href="/','href="./');
+       var t=new Date();
+       var y=t.getFullYear();
+       var m=t.getMonth()+1;
+       var d=t.getDate();
+       var PostTime=y+"-"+m+"-"+d;
 
+       var url=t.getTime();
        var header=$('#header').val();
-       $.post('./admin',{content:content,header:header});
-       alert("发表成功");
+       var NavId=$('#NavId').val();
+       var SubNavId=$('#SubNavId').val();
+       setTimeout(function()
+       {
+
+          $.post('./admin',{content:content,header:header,url:url,NavId:NavId,SubNavId:SubNavId,PostTime:PostTime});
+          alert("恭喜你，发表成功");
+       }, 1500);
        }
       function getPlainTxt() {
       var arr = [];

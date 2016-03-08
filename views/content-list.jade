@@ -7,66 +7,53 @@ block content
           #row
             .col-lg-3.hidden-xs
               ul#side-nav
+               each subNav in subNavs 
                 li
-                  a(href='#') 学院简介
-                li
-                  a(href='#') 系所简介
-                li
-                  a(href='#') 硕博点简介
-                li
-                  a(href='#') 学院领导
-                li
-                  a(href='#') 历任领导
-                li
-                  a(href='#') 服务指南及联系方式
+                  a(href!= subNav.url) #{subNav.SubNavName}
           .col-lg-9
             #row
               #right-content
                 #right-content-header
                   p
-                    a(href='./index') 首页
+                    a(href='./') 首页
                     span »
-                    a(href='') 人才培养
-                    span »
-                    a(href='') 毕业就业
+                    a(href= subNavs[SubNavId-1].url) #{subNavs[SubNavId-1].SubNavName}
                 #right-content-list
                   ul
-                    li
-                      a(href='') item 1
-                      span.time
-                        span.glyphicon.glyphicon-time(style='color: rgb(255, 140, 60);')
-                        | 2016-3-5
-                    li
-                      a(href='') itme 2
-                    li
-                      a(href='') itme 3
-                    li
-                      a(href='') itme 4
-                    li 5
-                    li 6
-                    li 7
-                    li 8
-                    li 9
-                    li 10
-                    li 11
-                    li 12
-                    li 13
-                    li 14
-                    li 15
+                   each article in articles
+                     li
+                       - var url='article?id='+article.url+'&NavId='+subNavs[0].NavId+'&SubNavId='+article.SubNavId+'&header='+article.header+'&PostTime='+article.PostTime+'&ReadNum='+article.ReadNum;
+                       
+                       span.glyphicon.glyphicon-chevron-right(style='color: rgb(255, 140, 60);')
+                       a(href= url) #{article.header}
+                       span.time
+                         span.glyphicon.glyphicon-time(style='color: rgb(255, 140, 60);')
+                         | #{article.PostTime}
+      
             #row
               #page-box
                 ul.pagination
-                  li
-                    a(href='#') «
-                  li.active
-                    a(href='#') 1
-                  li.disabled
-                    a(href='#') 2
-                  li
-                    a(href='#') 3
-                  li
-                    a(href='#') 4
-                  li
-                    a(href='#') 5
-                  li
-                    a(href='#') »
+                  - var pPage=PageId-1;
+                  - var pUrl='nav?NavId='+NavId+'&SubNavId='+SubNavId+'&PageId='+pPage
+                    if(pPage<1)
+                      li.disabled 
+                        a(href= '#') «
+                    else  
+                      li
+                        a(href= pUrl) «
+                  - for (var x = 1; x <= pages; x++)
+                     - var url='nav?NavId='+NavId+'&SubNavId='+SubNavId+'&PageId='+x
+                     if(x==PageId)
+                       li.active
+                         a(href= url) #{x}
+                     else
+                       li
+                         a(href= url) #{x}   
+                  - var nPage=(PageId-1)+2;       
+                  - var nUrl='nav?NavId='+NavId+'&SubNavId='+SubNavId+'&PageId='+nPage
+                     if(nPage>pages)         
+                       li.disabled
+                         a(href= '#') »
+                     else
+                       li
+                         a(href= nUrl) »

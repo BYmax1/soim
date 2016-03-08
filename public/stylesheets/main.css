@@ -219,3 +219,31 @@ body
    {
       float: right;
    }
+
+   #article-info
+   {
+        
+
+   }
+   #article-content-box
+   {
+      margin-top: 50px;
+      border-top: 1px solid #E6E6FA;
+   }
+   #article-info span
+   {
+      color:  #C0C0C0;
+      margin-right: 10px;
+      display: inline-block;
+      float: right;
+   }
+   #right-content-article h2
+   {
+      margin-bottom: 20px;
+   }
+   #article-info .glyphicon
+   {
+     margin-right: 3px;
+      display: inline-block;
+      float: right;
+   }

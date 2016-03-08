@@ -57,27 +57,29 @@ html
               span.icon-bar
           #example-navbar-collapse.collapse.navbar-collapse
             ul.nav.navbar-nav
+
               li
                 a(href='/') 首页
                 .nav-item-decoration
-              li.dropdown
+              
+               li.dropdown
                 a.dropdown-toggle(href='./yxjs', data-toggle='dropdown')
                   | 院系介绍 
                   b.caret
                 .nav-item-decoration
                 ul.dropdown-menu
                   li
-                    a(href='/nav?navId=1&subId=1') 学院简介
+                    a(href='/nav?NavId=1&SubNavId=1') 学院简介
                   li
-                    a(href='/nav?navId=1&subId=1') 院系介绍
+                    a(href='/nav?NavId=1&SubNavId=2') 院系介绍
                   li
-                    a(href='/nav?navId=1&subId=1') 硕博点简介
+                    a(href='/nav?NavId=1&SubNavId=3') 硕博点简介
                   li
-                    a(href='/nav?navId=1&subId=1') 学院领导
+                    a(href='/nav?NavId=1&SubNavId=4') 学院领导
                   li
-                    a(href='#') 历任领导
+                    a(href='/nav?NavId=1&SubNavId=5') 历任领导
                   li
-                    a(href='#') 服务指南及联系方式
+                    a(href='/nav?NavId=1&SubNavId=6') 服务指南及联系方式
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
                   | 教学信息 
@@ -85,11 +87,11 @@ html
                 .nav-item-decoration
                 ul.dropdown-menu
                   li
-                    a(href='#') jmeter
+                    a(href='/nav?NavId=2&SubNavId=1') 专业设置
                   li
-                    a(href='#') EJB
+                    a(href='/nav?NavId=2&SubNavId=2') 研究所教育
                   li
-                    a(href='#') Jasper Report
+                    a(href='/nav?NavId=2&SubNavId=3') 数学建模
               li.dropdown
                 a.dropdown-toggle(href='#', data-toggle='dropdown')
                   | 学科建设 

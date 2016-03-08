@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    #row
+      .container
+        #main-content
+          #row
+            .col-lg-3.hidden-xs
+              ul#side-nav
+               each subNav in subNavs 
+                li
+                  a(href!= subNav.url) #{subNav.SubNavName}
+          .col-lg-9
+            #row
+              #right-content
+                #right-content-header
+                  p
+                    a(href='./') 首页
+                    span »
+                    a(href= subNavs[SubNavId-1].url) #{subNavs[SubNavId-1].SubNavName}
+                #right-content-article
+                  h2 #{header}
+                  #article-info
+
+                    span  #{ReadNum}人阅读
+                    span.glyphicon.glyphicon-eye-open(style='color: rgb(255, 140, 60);') 
+                    
+                    span  #{PostTime}
+                    span.glyphicon.glyphicon-time(style='color: rgb(255, 140, 60);')
+                    
+                  #article-content-box
+                    p!= ArticleContent
+                       
+
+      
+          
