@@ -20,7 +20,10 @@ block content
                     a(href= subNavs[SubNavId-1].url) #{subNavs[SubNavId-1].SubNavName}
                 #right-content-list
                   ul
-                   each article in articles
+                   if(pages==0)
+                     p 抱歉，暂时没有文章
+                   else
+                    each article in articles
                      li
                        - var url='article?id='+article.url+'&NavId='+subNavs[0].NavId+'&SubNavId='+article.SubNavId+'&header='+article.header+'&PostTime='+article.PostTime+'&ReadNum='+article.ReadNum;
                        

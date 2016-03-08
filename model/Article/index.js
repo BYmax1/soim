@@ -30,9 +30,9 @@ Article.count=function(NavId,SubNavId,callback)
 //这里需要改进
 Article.get=function(Num,PageId,NavId,SubNavId,callback)
 { 
-  sequelize.query("SELECT * FROM article WHERE id NOT IN(SELECT t.id FROM (SELECT * from article where NavId=? ORDER BY id desc limit ?)as t) and NavId=? ORDER BY id DESC LIMIT 15", {replacements: [NavId,(PageId-1)*15,NavId], type: sequelize.QueryTypes.SELECT}).then(function(res)
+  sequelize.query("SELECT * FROM article WHERE id NOT IN(SELECT t.id FROM (SELECT * from article where NavId=? and SubNavId=? ORDER BY id desc limit ?)as t) and NavId=? and SubNavId=? ORDER BY id DESC LIMIT 15", {replacements: [NavId,SubNavId,(PageId-1)*15,NavId,SubNavId], type: sequelize.QueryTypes.SELECT}).then(function(res)
                    {
-                     console.log('文章: '+res[0].header );
+                
                      callback(res);
                    });
 }
@@ -52,3 +52,14 @@ Article.getIndex=function(NavId,callback)
                      callback(res);
                    });
 };
+
+//文章搜索
+Article.search=function(header,callback)
+{
+  var key="%"+header+"%";
+  var params={where:{header:{$like:key}}};
+  article.findAll(params).then(function(res)
+  {
+     callback(res);
+  });
+}

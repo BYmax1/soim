@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title= title
+    // 新 Bootstrap 核心 CSS 文件
+    // 新 Bootstrap 核心 CSS 文件
+    link(href='http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css', rel='stylesheet')
+    // jQuery文件。务必在bootstrap.min.js 之前引入
+    script(src='http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js')
+    // 最新的 Bootstrap 核心 JavaScript 文件
+    script(src='http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js')
+    meta(name='viewport', charset='utf-8', content='width=device-width, initial-scale=1.0')
+    style(type='text/css').
+      body
+      {
+      background-color:    #E6E6FA;
+      font-family: "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      }
+      form
+      {
+      width: 400px;
+      margin: 0 auto;
+      }
+      #inputPassword
+      {
+      margin-bottom: 40px;
+      }
+  body
+    .container
+      form(method="post")
+        h2 管理员登录
+        label.sr-only(for='inputEmail') Email address
+        input#inputAccount.form-control(name="account", placeholder='帐号', required='', autofocus='')
+        label.sr-only(for='inputPassword') Password
+        input#inputPassword.form-control(name="password", type='password', placeholder='密码', required='')
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in

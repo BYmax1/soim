@@ -1,0 +1,42 @@
+extends layout
+
+block content
+    #row
+      .container
+        #main-content
+          #row
+            .col-lg-3.hidden-xs
+
+            .col-lg-9
+             #row
+              #right-content
+                #right-content-header
+                  p
+                    a(href='./') 首页
+                    span »
+                    搜索
+                #right-content-list 
+                  ul      
+                   if(articles.length==0)
+                     p 抱歉，没有找到类似文章
+                   else
+                    each article in articles
+                     li
+                       - var url='article?id='+article.url+'&NavId='+article.NavId+'&SubNavId='+article.SubNavId+'&header='+article.header+'&PostTime='+article.PostTime+'&ReadNum='+article.ReadNum;
+                       
+                       span.glyphicon.glyphicon-chevron-right(style='color: rgb(255, 140, 60);')
+                       a(href= url) #{article.header}
+                       span.time
+                         span.glyphicon.glyphicon-time(style='color: rgb(255, 140, 60);')
+                         | #{article.PostTime}
+      
+            #row
+              #page-box
+                ul.pagination
+                      li.disabled 
+                        a(href= '#') «
+                      li.active
+                        a(href= '#') 1
+                      li.disabled
+                         a(href= '#') »
+

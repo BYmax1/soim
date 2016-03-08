@@ -6,9 +6,9 @@ var fs=require('fs');
 var Nav=require('../model/Nav');
 var SubNav=require('../model/SubNav');
 var Article=require('../model/Article');
+var Admin=require('../model/Admin');
 
-
-/* GET home page. */
+//获得首页
 router.get('/', function(req, res, next) 
 {
 
@@ -27,7 +27,7 @@ Article.getIndex(10,function(xytz)
 
  
 
-
+//获得文章列表
 router.get('/nav*', function(req, res, next) {
    
   var NavId=req.query.NavId;
@@ -42,14 +42,17 @@ router.get('/nav*', function(req, res, next) {
   Article.count(NavId,SubNavId,function(number)
   {   
       console.log("一共有多少: "+number);
-      pages=number/15+1;
+      if(number==0)
+        pages=0;
+      else
+        pages=number/15+1;
        Article.get(number,PageId,NavId,SubNavId,function(c)
       {
         SubNav.getAll(NavId,function(subNavs){
          res.render('content-list', 
         { title: '院系介绍',subNavs:subNavs,NavId:NavId,SubNavId:SubNavId,pages:pages,articles:c,PageId:PageId});
        });
-      });//获得某一页
+      });
   });
 });
 
@@ -82,9 +85,31 @@ router.get('/article*',function(req,res,next)
 
 
 
+//处理搜索
+router.post('/search', function(req, res, next) {
+   console.log(req.body['search']);  
 
+   Article.search(req.body['search'],function(articles)
+   {
+        res.render('search', 
+        { title: '站内搜索',articles:articles});
+        
+   })
+  
+});
 
+//后台登录
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: '后台登录' });
+});
 
+router.post('/login', function(req, res, next) {
+   Admin.get(req.body['account'],function(r)
+   {
+      if(req.body['password']==r.password)
+        res.redirect("./admin");
+   })
+});
 
 //后台文章发表
 router.get('/admin', function(req, res, next) {
@@ -93,13 +118,12 @@ router.get('/admin', function(req, res, next) {
 
 router.post('/admin', function(req, res, next) {
   
-
   console.log(req.body['content']);
   console.log(req.body['header']);
   console.log(req.body['NavId']);
   console.log(req.body['SubNavId']);
   console.log(req.body['url']);
-  console.log(req.body['PostTime']);
+  console.log(req.body['PostTime']);  
   
   Article.save(req.body['NavId'],req.body['SubNavId'],req.body['header'],req.body['url'],req.body['PostTime']);//保存文章
   var url='./public/'+req.body['url']+'.html';
