@@ -1,0 +1,64 @@
+html
+  head
+
+   title= title
+    
+   link(rel='stylesheet', href='stylesheets/back-end.css') 
+
+
+   link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+
+   meta(charset='utf-8',name='viewport',content="width=device-width, initial-scale=1")
+
+  body
+    #content
+      #article-management
+        form(action='', methode='post')
+          | 总类别
+          select#s1(name='NavId' onclick()="navChange()")
+            option(value='1', selected='') 院系介绍
+            option(value='2') 教学信息
+            option(value='3') 师资队伍
+            option(value='4') 学科建设
+            option(value='5') 招生信息
+            option(value='6') 党建工作
+            option(value='7') 学生工作
+            option(value='8') 国际合作
+            option(value='9') 人才招聘
+            option(value='10') 校友原地
+            option(value='11') 学院通知
+            option(value='12') 教学科研
+            option(value='13') 研究生教育
+            option(value='14') 学生工作
+            option(value='15') 学术公告
+            option(value='16') 服务专栏
+          |         子类别
+          select#s2(name='SubNavId')
+              option(value='1', selected='') 学院简介
+              option(value='2') 院系简介
+              option(value='3') 硕博点简介
+              option(value='4') 学院领导
+              option(value='5') 历任领导
+              option(value='6') 服务指南及联系方式
+          button 查找
+        span 标题
+        span#t-operation 操作
+        hr
+        ul
+         each article in articles
+          li
+            - var url='article?id='+article.url+'&NavId='+article.NavId+'&SubNavId='+article.SubNavId+'&header='+article.header+'&PostTime='+article.PostTime+'&ReadNum='+article.ReadNum;
+            a(href= url) #{article.header}
+            span (#{article.PostTime})
+            div
+              span
+                -var eUrl='editor?id='+article.url
+                a(href= eUrl) 编辑
+              span#delete
+                -var dUrl='delete?id='+article.url
+                a(href= dUrl onclick="if(confirm('确定删除?')==false)return false;") 删除
+        br
+
+    script(src='http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js')
+    script(src='javascripts/bootstrap.min.js')  
+    script(src='javascripts/back-end.js')

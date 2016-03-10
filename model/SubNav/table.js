@@ -1,6 +1,6 @@
 //定义post表结构
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('SubNav', {
+  return sequelize.define('subnav', {
     SubNavId: {
       field: 'SubNavId',
       type: DataTypes.STRING,
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: null
     },
   } , {
-    tableName: 'SubNav',
+    tableName: 'subnav',
     timestamps: false,
     freezeTableName: true
   });

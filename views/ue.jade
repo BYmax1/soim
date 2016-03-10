@@ -77,6 +77,7 @@ html
        var content=UE.getEditor('editor').getContent()
        content=content.replace('src="/','src="./');
        content=content.replace('href="/','href="./');
+       content=content.replace('<img ','<img class="img-responsive" ');
        var t=new Date();
        var y=t.getFullYear();
        var m=t.getMonth()+1;

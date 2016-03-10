@@ -11,6 +11,7 @@ body
     
    border:2px solid #eee; 
    border-top: none;
+
 }
 #footer-content
 {
@@ -218,6 +219,7 @@ body
    #page-box
    {
       float: right;
+      margin-bottom: 80px;
    }
 
    #article-info

@@ -28,11 +28,17 @@ Article.count=function(NavId,SubNavId,callback)
 }
 
 //这里需要改进
-Article.get=function(Num,PageId,NavId,SubNavId,callback)
+Article.get=function(PageId,NavId,SubNavId,callback)
 { 
-  sequelize.query("SELECT * FROM article WHERE id NOT IN(SELECT t.id FROM (SELECT * from article where NavId=? and SubNavId=? ORDER BY id desc limit ?)as t) and NavId=? and SubNavId=? ORDER BY id DESC LIMIT 15", {replacements: [NavId,SubNavId,(PageId-1)*15,NavId,SubNavId], type: sequelize.QueryTypes.SELECT}).then(function(res)
+
+  if(PageId==100)
+      sequelize.query("SELECT * FROM article  where NavId=? and SubNavId=? ORDER BY id DESC", {replacements: [NavId,SubNavId], type: sequelize.QueryTypes.SELECT}).then(function(res)
                    {
-                
+                     callback(res);
+                   });
+  else
+      sequelize.query("SELECT * FROM article WHERE id NOT IN(SELECT t.id FROM (SELECT * from article where NavId=? and SubNavId=? ORDER BY id desc limit ?)as t) and NavId=? and SubNavId=? ORDER BY id DESC LIMIT 15", {replacements: [NavId,SubNavId,(PageId-1)*15,NavId,SubNavId], type: sequelize.QueryTypes.SELECT}).then(function(res)
+                   {     
                      callback(res);
                    });
 }
@@ -62,4 +68,10 @@ Article.search=function(header,callback)
   {
      callback(res);
   });
+}
+
+//文章删除
+Article.destory=function(url)
+{
+   sequelize.query("delete from article where url= ?",{replacements: [url], type: sequelize.QueryTypes.DELETE})
 }

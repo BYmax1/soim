@@ -43,10 +43,10 @@ block content
                 .col-lg-4
                   .grid
                     h2.grid-head
-                      a(href='/nav?NavId=10&SubNavId=1') 学院通知
+                      a(href='/nav?NavId=11&SubNavId=1') 学院通知
                     ul
                      each item in xytz
-                       - var url='article?id='+item.url+'&NavId=10&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
+                       - var url='article?id='+item.url+'&NavId=11&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
                        li
                         a(href= url) #{item.header}
  
@@ -54,76 +54,52 @@ block content
                 .col-lg-4
                   .grid
                     h2.grid-head
-                      a(href='/nav?NavId=11&SubNavId=1') 教学科研
+                      a(href='/nav?NavId=12&SubNavId=1') 教学科研
                     ul
                      each item in jxky
-                      - var url='article?id='+item.url+'&NavId=11&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
+                      - var url='article?id='+item.url+'&NavId=12&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
                       li
                         a(href= url) #{item.header}
                 .col-lg-4
                   .grid
                     h2.grid-head
-                      a(href='') 研究生教育
+                      a(href='/nav?NavId=13&SubNavId=1') 研究生教育
                     ul
-                      li
-                        a(href='') 092学期本科行政班课表
-                      li
-                        a(href='') 2010年高校人文社科项目申报通知
-                      li
-                        a(href='') 2011级微机操作补考安排
-                      li
-                        a(href='') 141学期信息学院补考通知
-                      li
-                        a(href='') 第二届中国大数据技术创新大赛
+                      each item in yjsjy
+                        - var url='article?id='+item.url+'&NavId=13&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
+                        li
+                         a(href= url) #{item.header}
               // 学生工作
               #row
                 // 学院通知
                 .col-lg-4
                   .grid
                     h2.grid-head
-                      a(href='') 学生工作
+                      a(href='/nav?NavId=14&SubNavId=1') 学生工作
                     ul
+                     each item in xsgz
+                      - var url='article?id='+item.url+'&NavId=14&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
                       li
-                        a(href='') 舌战群儒，谁与争锋
-                      li
-                        a(href='') SAP培训通知
-                      li
-                        a(href='') 2011级微机操作补考安排
-                      li
-                        a(href='') 141学期信息学院补考通知
-                      li
-                        a(href='') 第二届中国大数据技术创新大赛
+                        a(href= url) #{item.header}
                 // 教学科研
                 .col-lg-4
                   .grid
                     h2.grid-head
-                      a(href='') 学术公告
+                      a(href='/nav?NavId=15&SubNavId=1') 学术公告
                     ul
-                      li
-                        a(href='') 092学期本科行政班课表
-                      li
-                        a(href='') 2010年高校人文社科项目申报通知
-                      li
-                        a(href='') 2011级微机操作补考安排
-                      li
-                        a(href='') 141学期信息学院补考通知
-                      li
-                        a(href='') 第二届中国大数据技术创新大赛
+                      each item in xsgg
+                       - var url='article?id='+item.url+'&NavId=15&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
+                       li
+                        a(href= url) #{item.header}
                 .col-lg-4
                   .grid
                     h2.grid-head
-                      a(href='') 服务专栏
+                      a(href='/nav?NavId=16&SubNavId=1') 服务专栏
                     ul
-                      li
-                        a(href='') 092学期本科行政班课表
-                      li
-                        a(href='') 2010年高校人文社科项目申报通知
-                      li
-                        a(href='') 2011级微机操作补考安排
-                      li
-                        a(href='') 141学期信息学院补考通知
-                      li
-                        a(href='') 第二届中国大数据技术创新大赛
+                      each item in fwzl
+                       - var url='article?id='+item.url+'&NavId=16&SubNavId=1'+'&header='+item.header+'&PostTime='+item.PostTime+'&ReadNum='+item.ReadNum;
+                       li
+                        a(href= url) #{item.header}
             // 二维码
             .col-lg-2.col-md-2.col-sm-3.hidden-xs
               .right-side-grid
@@ -135,11 +111,11 @@ block content
                 .right-side-grid-content(style='height:110px;')
                   ul
                     li
-                      a(href='') 计算机等级考试报名入口
+                      a(href='http://210.35.205.94/') 计算机等级考试报名入口
                     li
-                      a(href='') 专硕管理系统
+                      a(href='http://sityjsgl.jxufe.cn/Account/Login') 专硕管理系统
                     li
-                      a(href='') 实验教学中心
+                      a(href='http://sit.jxufe.cn/xxzxweb/') 实验教学中心
                     li
-                      a(href='') 网络课程考试系统
+                      a(href='http://icmecg.jxufe.cn:82/') 网络课程考试系统
   

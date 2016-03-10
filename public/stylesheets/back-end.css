@@ -1,0 +1,47 @@
+#content
+{
+	margin: 0 auto;
+}
+#article-management
+{
+	margin: 10px auto;
+	padding: 20px;
+	width: 800px;
+	border: 1px solid gray;
+}
+
+
+#t-operation
+{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+}
+ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+ul li
+{
+	 margin: 2px 0;
+	 border-bottom: 1px solid #eee;
+}
+ul li:hover
+{
+	background-color: 		#FFFFE0;
+}
+li div
+{
+	float: right;
+}
+li div span
+{
+	margin-right: 5px;
+}
+
+form button
+{
+	margin-left: 20px;
+}

@@ -12,14 +12,25 @@ var Admin=require('../model/Admin');
 router.get('/', function(req, res, next) 
 {
 
-
-Article.getIndex(10,function(xytz)
+console.log("123");
+Article.getIndex(11,function(xytz)
 {
-   Article.getIndex(11,function(jxky)
+   Article.getIndex(12,function(jxky)
    {
-     res.render('index', {title: '江西财经大学信息管理学院',xytz:xytz,jxky:jxky});
+         Article.getIndex(13,function(yjsjy)
+   {
+         Article.getIndex(14,function(xsgz)
+   {
+           Article.getIndex(15,function(xsgg)
+   {
+         Article.getIndex(16,function(fwzl)
+   {
+         res.render('index', {title: '江西财经大学信息管理学院',xytz:xytz,jxky:jxky,yjsjy:yjsjy,xsgz:xsgz,xsgg:xsgg,fwzl:fwzl});   
    })
-    
+   })
+   })
+   })
+   })    
 });
 
  
@@ -46,7 +57,7 @@ router.get('/nav*', function(req, res, next) {
         pages=0;
       else
         pages=number/15+1;
-       Article.get(number,PageId,NavId,SubNavId,function(c)
+       Article.get(PageId,NavId,SubNavId,function(c)
       {
         SubNav.getAll(NavId,function(subNavs){
          res.render('content-list', 
@@ -63,7 +74,7 @@ router.get('/article*',function(req,res,next)
     var url='./public/'+req.query.id+".html";
     var content=fs.readFileSync(url)
     content=content.toString();
-    console.log("文章内容 "+content);
+    
     var header=req.query.header;
 
     Article.add(req.query.id);//增加一个阅读量
@@ -104,16 +115,30 @@ router.get('/login', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
+
+  // var session=req.session;
+  // session.a="123";
+  // console.log(session.a);
+
    Admin.get(req.body['account'],function(r)
    {
       if(req.body['password']==r.password)
+      {
+        
+ 
         res.redirect("./admin");
+      } 
+      else
+      {
+        res.redirect("./login");
+      }
    })
 });
 
 //后台文章发表
 router.get('/admin', function(req, res, next) {
-  res.render('ue', { title: '发表文章' });
+ 
+    res.render('ue', { title: '发表文章' });
 });
 
 router.post('/admin', function(req, res, next) {
@@ -134,6 +159,30 @@ router.post('/admin', function(req, res, next) {
        return console.error(err);
         }
   });
+});
+
+//后台文章管理
+router.get('/manage', function(req, res, next) {
+  var NavId=req.query.NavId;
+  var SubNavId=req.query.SubNavId;
+
+  
+  if(SubNavId===undefined)
+     SubNavId=1;
+  if(NavId===undefined)
+     NavId=1;
+
+  Article.get(100,NavId,SubNavId,function(c)
+    {
+        res.render('article-manage', 
+        { title: '文章管理',NavId:NavId,SubNavId:SubNavId,articles:c});
+    });//获得某一页
+});
+
+//后台文章删除
+router.get('/delete*', function(req, res, next) {
+    Article.destory(req.query.id);
+    res.redirect('./manage');
 });
 
 
