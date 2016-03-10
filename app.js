@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 var session = require('express-session');
 
 var routes = require('./routes/index');
@@ -19,6 +20,8 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+//设置session
+app.use(session({resave:false,saveUninitialized:false,secret: 'keyboard cat',cookie: { maxAge: 300000 }}));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,8 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-//设置session
-app.use(session({resave:false,saveUninitialized:false,secret: 'keyboard cat',cookie: { maxAge: 300000 }}));
+
 
 
 //ueditor支持

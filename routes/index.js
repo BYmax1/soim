@@ -12,7 +12,8 @@ var Admin=require('../model/Admin');
 router.get('/', function(req, res, next) 
 {
 
-console.log("123");
+ 
+
 Article.getIndex(11,function(xytz)
 {
    Article.getIndex(12,function(jxky)
@@ -40,7 +41,10 @@ Article.getIndex(11,function(xytz)
 
 //获得文章列表
 router.get('/nav*', function(req, res, next) {
-   
+  
+
+  
+
   var NavId=req.query.NavId;
   var SubNavId=req.query.SubNavId;
   var PageId=req.query.PageId;
@@ -119,14 +123,14 @@ router.post('/login', function(req, res, next) {
   // var session=req.session;
   // session.a="123";
   // console.log(session.a);
-
+   req.session.user=false;
    Admin.get(req.body['account'],function(r)
    {
       if(req.body['password']==r.password)
-      {
+      { 
+        req.session.user=true;
+        res.redirect("./admin.html");
         
- 
-        res.redirect("./admin");
       } 
       else
       {
@@ -136,20 +140,12 @@ router.post('/login', function(req, res, next) {
 });
 
 //后台文章发表
-router.get('/admin', function(req, res, next) {
- 
-    res.render('ue', { title: '发表文章' });
+router.get('/post', checkLogin);
+router.get('/post', function(req, res, next) {
+    res.render('post', { title: '发表文章'});//1表示发表新文章
 });
 
-router.post('/admin', function(req, res, next) {
-  
-  console.log(req.body['content']);
-  console.log(req.body['header']);
-  console.log(req.body['NavId']);
-  console.log(req.body['SubNavId']);
-  console.log(req.body['url']);
-  console.log(req.body['PostTime']);  
-  
+router.post('/post', function(req, res, next) {
   Article.save(req.body['NavId'],req.body['SubNavId'],req.body['header'],req.body['url'],req.body['PostTime']);//保存文章
   var url='./public/'+req.body['url']+'.html';
   fs.writeFile(url, req.body['content'], function(err)
@@ -162,6 +158,7 @@ router.post('/admin', function(req, res, next) {
 });
 
 //后台文章管理
+router.get('/manage', checkLogin);
 router.get('/manage', function(req, res, next) {
   var NavId=req.query.NavId;
   var SubNavId=req.query.SubNavId;
@@ -180,10 +177,58 @@ router.get('/manage', function(req, res, next) {
 });
 
 //后台文章删除
+router.get('/delete*', checkLogin);
 router.get('/delete*', function(req, res, next) {
     Article.destory(req.query.id);
     res.redirect('./manage');
 });
 
+//获得后台文章编辑的页面
+router.get('/edit*', checkLogin);
+router.get('/edit*', function(req, res, next) {
 
+    var url='./public/'+req.query.id+'.html';
+    var header=req.query.header;
+    var NavId=req.query.NavId;
+    var SubNavId=req.query.SubNavId;
+    var content=fs.readFileSync(url);
+    content=content.toString();
+    res.render('ue', { title: '编辑文章',header:header,content:content,url:req.query.id,NavId:NavId,SubNavId:SubNavId });//0 表示编辑
+});
+
+//后台编辑的新文章发表
+router.post('/edit*', checkLogin);
+router.post('/edit*', function(req, res, next) {
+
+    var url=req.body['url'];
+    var header=req.body['header'];
+    var content=req.body['content'];
+    var NavId=req.body['NavId'];
+    var SubNavId=req.body['SubNavId'];
+    fs.writeFile('./public/'+url+'.html', content, function(err)//将原来文章覆盖
+    {
+    if(err)
+      {
+       return console.error(err);
+        }
+    });
+    Article.edit(header,url,NavId,SubNavId);     
+});
+
+router.get('/logout',function(req, res, next)
+{
+  req.session.user=null;
+  res.redirect('/login');
+});
+
+
+//判断是否登录
+function checkLogin(req, res, next) {
+  console.log(req.session.user);
+ if (!req.session.user) 
+ {
+ return res.redirect('/login');
+ }
+ next();
+}
 module.exports = router;

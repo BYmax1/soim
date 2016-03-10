@@ -25,7 +25,7 @@ html
             option(value='7') 学生工作
             option(value='8') 国际合作
             option(value='9') 人才招聘
-            option(value='10') 校友原地
+            option(value='10') 校友园地
             option(value='11') 学院通知
             option(value='12') 教学科研
             option(value='13') 研究生教育
@@ -52,10 +52,10 @@ html
             span (#{article.PostTime})
             div
               span
-                -var eUrl='editor?id='+article.url
+                -var eUrl='edit?id='+article.url+'&header='+article.header+"&NavId="+article.NavId+"&SubNavId="+article.SubNavId;
                 a(href= eUrl) 编辑
               span#delete
-                -var dUrl='delete?id='+article.url
+                -var dUrl='delete?id='+article.url;
                 a(href= dUrl onclick="if(confirm('确定删除?')==false)return false;") 删除
         br
 

@@ -27,7 +27,10 @@ Article.count=function(NavId,SubNavId,callback)
   })
 }
 
-//这里需要改进
+
+ 
+
+//获得文章列表
 Article.get=function(PageId,NavId,SubNavId,callback)
 { 
 
@@ -74,4 +77,10 @@ Article.search=function(header,callback)
 Article.destory=function(url)
 {
    sequelize.query("delete from article where url= ?",{replacements: [url], type: sequelize.QueryTypes.DELETE})
+}
+
+//文章编辑
+Article.edit=function(header,url,NavId,SubNavId)
+{
+  sequelize.query("UPDATE article SET header= ?,NavId= ?,SubNavId=? WHERE url = ?", { replacements: [header,NavId,SubNavId,url],type: sequelize.QueryTypes.UPDATE});
 }

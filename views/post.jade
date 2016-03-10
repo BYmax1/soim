@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title= title
+    title= 发表文章
     meta(http-equiv='Content-Type', content='text/html;charset=utf-8')
     script(type='text/javascript', charset='utf-8', src='/ueditor/ueditor.config.js')
     script(type='text/javascript', charset='utf-8', src='/ueditor/ueditor.all.min.js')
@@ -23,7 +23,7 @@ html
       }
   body()
     div
-      h1 编辑文章
+      h1 发表文章
       span 文章标题
       input(type='text' id='title' value= header)  
       form(action='', methode='post')
@@ -73,40 +73,7 @@ html
         button(onclick='setDisabled()') 不可编辑
         button(onclick=" UE.getEditor('editor').setHide()") 隐藏编辑器
         button(onclick=" UE.getEditor('editor').setShow()") 显示编辑器
-      script.
- 
-        setTimeout(function()
-        {
-          window.content = !{JSON.stringify(content)};
-          window.oldUrl = !{JSON.stringify(url)};
-          window.NavId = !{JSON.stringify(NavId)};
-          window.SubNavId = !{JSON.stringify(SubNavId)};
-          $("#s1").val(NavId);
-           var SubNav={"sn1":["学院简介","院系介绍","硕博点简介","学院领导","历任领导","服务指南及联系方式"],
-               "sn2":["专业设置","研究生教育","数学建模"],
-               "sn3":["博士生导师","硕士生导师","学科带头人"],
-               "sn4":["重点学科","科研成果","核心期刊"],
-               "sn5":["本科生招生","硕士研究生招生","博士研究生招生"],
-               "sn6":["组织建设","教育管理","主题教育"],
-               "sn7":["学生会","学工动态","管理制度"],
-               "sn8":["合作院校","留学项目","教师出访"],
-               "sn9":["人才招聘"],
-               "sn11":["学院通知"],
-               "sn13":["研究生教育"],
-               "sn14":["学生工作"],
-               "sn15":["学术公告"],
-               "sn12":["教学科研"],
-               "sn16":["服务专栏"],
-               "sn10":["校友园地"]
-               };     
-            var htmlTxt;
-            var val_s1=$("#s1").val();
-            for(var i=1;i<SubNav["sn"+val_s1].length+1;i++)
-            htmlTxt+="<option value="+i+">"+SubNav["sn"+val_s1][i-1]+"</option>";
-            $("#s2").html(htmlTxt);
-             $("#s2").val(SubNavId);
-          insertHtml();
-        },1500)
+  
 
     div
       button(onclick='createEditor()')
@@ -143,7 +110,6 @@ html
 
       function getContent() 
       {
-
        var content=UE.getEditor('editor').getContent();
        content=content.replace('src="/','src="./');
        content=content.replace('href="/','href="./'); 
@@ -151,7 +117,7 @@ html
        var header=$('#title').val();
        var NavId=$('#s1').val();
        var SubNavId=$('#s2').val();
-       
+      
        
         var t=new Date();
         var y=t.getFullYear();
@@ -160,13 +126,11 @@ html
         var PostTime=y+"-"+m+"-"+d;
 
         var url=t.getTime();
-
         setTimeout(function()
         {
           $.post('./post',{content:content,header:header,url:url,NavId:NavId,SubNavId:SubNavId,PostTime:PostTime});
           alert("恭喜你，发表成功");
         }, 1500);
-      
        }
       function getPlainTxt() {
       var arr = [];
