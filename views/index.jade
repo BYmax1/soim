@@ -2,26 +2,33 @@ extends layout
 
 block content
     #row
-      #myCarousel.carousel.slide
-        ol.carousel-indicators
-          li.active(data-slide-to='0', data-target='#myCarousel')
-          li(data-slide-to='1', data-target='#myCarousel')
-          li(data-slide-to='2', data-target='#myCarousel')
-        .carousel-inner
-          .item.active
-            img(alt='', src='./images/1.jpg')
-            .carousel-caption
-              h4
-          .item
-            img(alt='', src='./images/2.jpg')
-            .carousel-caption
-              h4
-          .item
-            img(alt='', src='./images/3.jpg')
-            .carousel-caption
-              h4
-        a.left.carousel-control(data-slide='prev', href='#myCarousel') ‹
-        a.right.carousel-control(data-slide='next', href='#myCarousel') ›
+        #myCarousel.carousel.slide
+          // 轮播（Carousel）指标
+          ol.carousel-indicators
+            each pic,i in pics
+             if(pic.url)
+               if(i==0)
+                 li.active(data-target='#myCarousel', data-slide-to= i)
+               else
+                 li(data-target='#myCarousel', data-slide-to= i)
+            
+          // 轮播（Carousel）项目
+          .carousel-inner
+            each pic,i in pics
+             -var src=/images/+pic.url+".jpg";
+             if(pic.url)
+              if(i==0)
+               .item.active
+                a(href= pic.articleUrl)
+                 img(src= src, alt='not found')
+              else
+               .item
+                a(href= pic.articleUrl)
+                 img(src= src, alt='not found')
+
+          // 轮播（Carousel）导航
+          a.carousel-control.left(href='#myCarousel', data-slide='prev') ‹
+          a.carousel-control.right(href='#myCarousel', data-slide='next') ›
       
     #row
       .container

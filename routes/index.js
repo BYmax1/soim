@@ -1,8 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
+var multiparty = require('multiparty');
+var util = require('util');
 var fs=require('fs');
 
+var Pic=require('../model/Pic');
+var CachePic=require('../model/CachePic');
 var Nav=require('../model/Nav');
 var SubNav=require('../model/SubNav');
 var Article=require('../model/Article');
@@ -26,7 +29,11 @@ Article.getIndex(11,function(xytz)
    {
          Article.getIndex(16,function(fwzl)
    {
-         res.render('index', {title: '江西财经大学信息管理学院',xytz:xytz,jxky:jxky,yjsjy:yjsjy,xsgz:xsgz,xsgg:xsgg,fwzl:fwzl});   
+              Pic.getAll(function(pics)
+    {
+       res.render('index', {title: '江西财经大学信息管理学院',xytz:xytz,jxky:jxky,yjsjy:yjsjy,xsgz:xsgz,xsgg:xsgg,fwzl:fwzl,pics:pics});   
+    });
+         
    })
    })
    })
@@ -115,6 +122,8 @@ router.post('/search', function(req, res, next) {
 
 //后台登录
 router.get('/login', function(req, res, next) {
+  
+  Pic.copy();
   res.render('login', { title: '后台登录' });
 });
 
@@ -215,6 +224,69 @@ router.post('/edit*', function(req, res, next) {
     Article.edit(header,url,NavId,SubNavId);     
 });
 
+//轮播图管理
+router.get('/pic-manage', checkLogin);
+router.get('/pic-manage',function(req, res, next)
+{
+    if(req.query.t=='1')
+      CachePic.copy();
+   
+    CachePic.getAll(function(pics)
+    {
+       res.render("pic-manage",{title:"轮播图管理",pics:pics});
+    });
+});
+
+//轮播图管理
+router.post('/pic-manage', checkLogin);
+router.post('/pic-manage',function(req, res, next)
+{
+
+
+   
+
+      //生成multiparty对象，并配置上传目标路径
+    var form = new multiparty.Form({uploadDir: './public/files/'});
+    //上传完成后处理
+    form.parse(req, function(err, fields, files)
+     {
+     var filesTmp = JSON.stringify(files,null,2);
+     var fieldsTmp = JSON.stringify(fields,null,2);
+    if(err)
+    {
+      console.log('parse error: ' + err);
+    } 
+    else 
+    {
+      var inputFile = files.inputFile[0];
+      var uploadedPath = inputFile.path;
+      var t=new Date();
+      t=t.getTime();
+      var dstPath = './public/images/' + t+'.jpg';
+     //重命名为真实文件名
+      fs.rename(uploadedPath, dstPath, function(err) 
+      {
+        if(err)
+        {
+           console.log('rename error: ' + err);
+         } 
+         else 
+         {
+           console.log('rename ok');
+           console.log(dstPath);
+         }
+       });
+      CachePic.save(fields.id[0],t,fields.articleUrl[0])//存入缓冲数据表当中
+      res.redirect('/pic-manage');
+    }
+  });
+     
+
+});
+
+
+
+//退出登录
 router.get('/logout',function(req, res, next)
 {
   req.session.user=null;

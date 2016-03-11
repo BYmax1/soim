@@ -1,0 +1,83 @@
+html
+  head
+    title= title
+    link(href='http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.min.css', rel='stylesheet')
+    script(src='http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js')
+    meta(name='viewport', charset='utf-8', content='width=device-width, initial-scale=1.0')
+    script(src='http://apps.bdimg.com/libs/bootstrap/3.3.4/js/bootstrap.min.js')
+    style(type='text/css').
+      form
+      {
+      width: 800px;
+      margin: 100px auto;
+      margin-bottom: 0;
+      }
+      #pic
+      {
+      margin-bottom: 10px;
+      }
+      .gird
+      {
+      padding: 15px;
+      }
+      p
+      {
+        color:red;
+      }
+      p a
+      {
+         dispaly:inline-block;
+         margin-right:20px;
+      }
+    script(type='text/javascript').
+      $("#pic1").click(function()
+      {
+      console.log($(this).val());
+      });
+  body
+    body
+      #container
+        #myCarousel.carousel.slide
+          // 轮播（Carousel）指标
+          ol.carousel-indicators
+            each pic,i in pics
+             if(pic.url)
+              if(i==0)
+                li.active(data-target='#myCarousel', data-slide-to= i)
+              else
+                li(data-target='#myCarousel', data-slide-to= i)
+            
+          // 轮播（Carousel）项目
+          .carousel-inner
+            each pic,i in pics
+             -var src='./images/'+pic.url+'.jpg';
+             if(pic.url)
+              if(i==0)
+               .item.active
+                 a(href= pic.articleUrl)
+                  img(src= src, alt='not found')
+              else
+               .item
+                 a(href= pic.articleUrl)
+                  img(src= src, alt='not found')
+
+          // 轮播（Carousel）导航
+          a.carousel-control.left(href='#myCarousel', data-slide='prev') ‹
+          a.carousel-control.right(href='#myCarousel', data-slide='next') ›
+        form(method='post' , enctype='multipart/form-data')
+          .gird
+            p 请选择1380*335的图片，且分辨率100以上(以上只是预览，点击完成才能在首页显示)
+            input(name='inputFile', type='file', accept="image/*")
+            span 图片位置
+            select(name='id')
+              option(value='1', selected='') 1
+              option(value='2') 2
+              option(value='3') 3
+              option(value='4') 4
+              option(value='5') 5
+            span 链接
+            input(type='txt',name='articleUrl' placeholder='请输入文章链接')
+            input(type='submit', value='上传')
+            p
+             a(href= './pic-manage?t=1' onclick="if(confirm('确定提交?')==false)return false;") 完成
+             a(href= './admin.html' onclick="if(confirm('确定返回?')==false)return false;") 返回
